@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#030712"
+    android:padding="16dp">
+
+    <!-- Encabezado HUD -->
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="JARVIS SBN"
+        android:textColor="#00E5FF"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:letterSpacing="0.16"
+        android:fontFamily="monospace"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvCreator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CREADOR: GIANCARLOS • MK-II"
+        android:textColor="#64FFDA"
+        android:textSize="11sp"
+        android:fontFamily="monospace"
+        android:layout_marginTop="2dp"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- Botones superiores -->
+    <Button
+        android:id="@+id/btnWakeToggle"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:text="VOZ: OFF"
+        android:textColor="#00E5FF"
+        android:textSize="11sp"
+        android:fontFamily="monospace"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:background="@drawable/bg_hud_button"
+        app:backgroundTint="@null"
+        android:layout_marginEnd="6dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnSettings" />
+
+    <Button
+        android:id="@+id/btnSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:text="API"
+        android:textColor="#00E5FF"
+        android:textSize="11sp"
+        android:fontFamily="monospace"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:background="@drawable/bg_hud_button"
+        app:backgroundTint="@null"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Barra de Telemetría HUD -->
+    <TextView
+        android:id="@+id/tvTelemetry"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_hud_panel"
+        android:padding="8dp"
+        android:text="BAT: --%  |  RED: --  |  MODO: NORMAL"
+        android:textColor="#80D8FF"
+        android:textSize="11sp"
+        android:gravity="center"
+        android:fontFamily="monospace"
+        app:layout_constraintTop_toBottomOf="@id/tvCreator"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Reactor Arc Animado -->
+    <com.giancarlos.jarvissbn.ArcReactorView
+        android:id="@+id/arcReactor"
+        android:layout_width="175dp"
+        android:layout_height="175dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/tvTelemetry"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Estado HUD -->
+    <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="TOCA EL REACTOR O ACTIVA VOZ: JARVIS"
+        android:textColor="#00E5FF"
+        android:textSize="11sp"
+        android:gravity="center"
+        android:fontFamily="monospace"
+        app:layout_constraintTop_toBottomOf="@id/arcReactor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Panel de conversación -->
+    <ScrollView
+        android:id="@+id/scrollChat"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/bg_hud_panel"
+        android:padding="12dp"
+        app:layout_constraintTop_toBottomOf="@id/tvStatus"
+        app:layout_constraintBottom_toTopOf="@id/inputBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/tvLog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#E0F7FA"
+            android:textSize="13sp"
+            android:lineSpacingExtra="4dp"
+            android:fontFamily="monospace"
+            android:text="[JARVIS SBN]: Inicializando núcleos... Bienvenido, señor Giancarlos.
+" />
+    </ScrollView>
+
+    <!-- Barra de comando escrito -->
+    <LinearLayout
+        android:id="@+id/inputBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <EditText
+            android:id="@+id/etCommand"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_weight="1"
+            android:hint="Escribe una orden, señor..."
+            android:textColorHint="#4D8099"
+            android:textColor="#E0F7FA"
+            android:textSize="13sp"
+            android:fontFamily="monospace"
+            android:background="@drawable/bg_hud_panel"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:singleLine="true"
+            android:imeOptions="actionSend" />
+
+        <Button
+            android:id="@+id/btnSend"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:layout_marginStart="8dp"
+            android:text="ENVIAR"
+            android:textColor="#00E5FF"
+            android:textSize="12sp"
+            android:fontFamily="monospace"
+            android:background="@drawable/bg_hud_button"
+            app:backgroundTint="@null" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
